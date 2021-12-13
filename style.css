@@ -1,0 +1,263 @@
+/* nejsme vcerejsi, pouzivame moderni box model */
+
+*,
+ ::after,
+ ::before {
+    box-sizing: border-box;
+}
+
+
+/*
+ BARVY
+ pozadi           #f5f5f5
+ dekorace nadpisů #629edb
+*/
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    font-family: 'Merriweather', serif;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+
+/* HLAVICKA */
+
+.titulek {
+    font-family: 'Raleway', serif;
+}
+
+h1 {
+    font-size: 60px;
+}
+
+.hlavicka {
+    background-image: url(images/island-hlavicka.jpg);
+    background-size: cover;
+    display: flex;
+    color: white;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+hr {
+    color: white;
+    width: 100px;
+    height: 2px;
+}
+
+.autor {
+    font-style: italic;
+}
+
+
+/* MENU */
+
+a {
+    color: rgb(139, 139, 139);
+    text-decoration: none;
+}
+
+li {
+    border-bottom: 2px rgb(204, 197, 197) solid;
+    text-align: center;
+    text-transform: uppercase;
+    list-style-type: none;
+    padding: 10px;
+}
+
+.menu {
+    padding: 10px;
+}
+
+
+/* OBSAH */
+
+section p,
+h2 {
+    margin: 15px;
+}
+
+section a {
+    text-decoration: underline;
+}
+
+img {
+    width: 100%;
+    /* padding-bottom: 30px;
+    margin: 0; */
+}
+
+section {
+    margin-bottom: 60px;
+}
+
+.popisek {
+    color: rgb(139, 139, 139);
+    text-align: center;
+    font-size: 15px;
+    margin: 0;
+    /* opacity: 0.5; */
+}
+
+section hr {
+    margin: 0;
+    height: 6px;
+    background-color: #629edb;
+}
+
+
+/* FOTOGALERIE */
+
+.foto {
+    width: 100%;
+    margin: 0;
+    padding-top: 25px;
+}
+
+.popisek {
+    font-style: italic;
+}
+
+
+/* PATICKA */
+
+.paticka p {
+    color: grey;
+    font-size: 15px;
+    padding-left: 20px;
+}
+
+.paticka a {
+    text-decoration: underline;
+    color: grey;
+}
+
+.paticka {
+    padding: 20px;
+    margin: O;
+    background-image: linear-gradient(rgb(184, 183, 183), rgb(255, 255, 255))
+}
+
+
+/*Tabletové verze - šířka 500px až 1000px
+- skoro všechno je pod sebou
+- v menu jsou položky vedle sebe, menu samotné je nad obsahem
+- v galerii jsou vždy 2 obrázky vedle sebe (obrázků je 9, zbyde ti na konci jeden prázdný obdélníček)
+- popisky k obrázkům v textu jsou uvnitř obrázku blízko k jeho pravému dolnímu rohu
+- popisky k obrázkům v galerii jsou skryté a vyjíždějí při najetí myši*/
+
+@media only screen and (min-width: 500px) {
+    .menu {
+        display: flex;
+    }
+    li {
+        border: 2px rgb(204, 197, 197) solid;
+        flex-grow: 1;
+    }
+    li:first-child {
+        border-left: 0;
+    }
+    li:last-child {
+        border-right: 0;
+    }
+    /* foto */
+    .foto {
+        width: 50%;
+        position: relative;
+        overflow: hidden;
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+        line-height: 0;
+    }
+    .galerie {
+        display: flex;
+        flex-wrap: wrap;
+        line-height: 0;
+    }
+    section>hr {
+        display: none;
+    }
+    figcaption.popisek {
+        display: block;
+        float: left;
+        position: absolute;
+        bottom: 10px;
+        color: white;
+        line-height: 2;
+        padding: 10px;
+        background-color: black;
+        transition: 1s ease;
+        opacity: 0;
+    }
+    .foto:hover img {
+        transition: transform .5s ease;
+        transform: scale(1.2);
+    }
+    .foto:hover .popisek {
+        opacity: 0.6;
+    }
+    .foto img:hover {
+        transform: scale(2);
+    }
+}
+
+
+/*Počítačová verze - šířka nad 1000px
+=======================================
+- hlavička s obrázkem na pozadí je přes celou šířku stránky
+- obsah je v bílém pruhu uprostřed stránky omezeném na šířku 960px
+- bílý obdélník s obsahem je vysunutý kousek nahoru do obrázku (použij vlastnost margin)
+- v menu jsou položky pod sebou, menu je omezené na úzký proužek a je vlevo od úvodního odstavce textu (menu -> float, text -> padding-left?)
+- jednotlivé "sekce" s textem mají v počítačové verzi vždy na jedné straně odsazení pomocí paddingu - všimni si, že se to střídá a jednou je to vpravo a pak zase vlevo, aby web vypadal vizuálně zajímavě
+- v galerii jsou vždy 3 obrázky vedle sebe
+- popisky k obrázkům v textu jsou stejné jako v tabletové verzi (uvnitř obrázku)
+- popisky k obrázkům v galerii jsou stejné jako v tabletové verzi (skryté + stejný efekt)*/
+
+@media only screen and (min-width: 1000px) {
+    .autor {
+        margin-bottom: 80px;
+    }
+    .obsah {
+        width: 960px;
+        background-color: white;
+        margin: auto;
+        margin-top: -50px;
+        border: none;
+    }
+    .menu {
+        float: left;
+        flex-direction: column;
+        width: max-content;
+    }
+    li {
+        border: none;
+        border-bottom: 2px rgb(204, 197, 197) solid;
+    }
+    .uvod {
+        padding-left: 250px;
+    }
+    .text1 p {
+        padding-right: 170px;
+    }
+    .text2 h2 {
+        padding-left: 170px;
+    }
+    .text2 p {
+        padding-left: 170px;
+    }
+    .text3 h2 {
+        padding-left: 170px;
+    }
+    .text3 p {
+        padding-left: 170px;
+    }
+    /* foto */
+    .foto {
+        width: 33.3333333%;
+    }
+}
